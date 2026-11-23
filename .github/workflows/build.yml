@@ -1,0 +1,25 @@
+name: Build VelvetBusComp VST3
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: juce-framework/JUCE
+          path: JUCE
+      - run: cmake -B build -A x64 -DJUCE_DIR=JUCE
+      - run: cmake --build build --config Release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: VelvetBusComp-VST3
+          path: |
+            build/**/*.vst3
+            !build/**/*.vst3/**
+            
