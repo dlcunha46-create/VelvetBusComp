@@ -26,6 +26,8 @@ juce_add_plugin(VelvetBusComp
     COPY_PLUGIN_AFTER_BUILD TRUE
 )
 
+juce_generate_juce_header(VelvetBusComp)
+
 target_sources(VelvetBusComp PRIVATE
     Source/PluginProcessor.cpp
     Source/PluginProcessor.h
